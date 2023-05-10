@@ -5,21 +5,9 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-Register.destroy_all
-register1 = Register.new(first_name: "Sebastián", last_name: "Aristizábal Suárez", sex: description: "Las mejores colas de mono y Piscos de todo copiapó", address: "Calle de la Luna 13", city: "Copiapó", photo_url: "www.lewagon.com")
+Api::V1::Register.destroy_all
+register1 = Api::V1::Register.new(first_name: "Sebastián", last_name: "Aristizábal Suárez", gender: "masculino", birth_date: "1992/4/7", email: "sebastinn@hotmail.com", description: "cordial saludo, me gustaría pertenecer a su empresa y su equipo de trabajo", address: "Calle X 30A-50", country: "Colombia", department: "Antioquia", city: "Medellín", apartment: "apt 501")
 register1.save!
-register2 = Register.new(name: "el tragadero", description: "las mejores butifarras", address: "calle 50", city: "medellín", photo_url: "www.lewagon.com")
-register2.save!
-puts "Restaurante creado"
-
-t.string "first_name"
-t.string "last_name"
-t.string "sex"
-t.date "birth_date"
-t.string "email"
-t.text "description"
-t.string "address"
-t.string "country"
-t.string "department"
-t.string "city"
-t.string "apartment"
+register1 = Api::V1::Register.new(first_name: "Andres", last_name: "ibañez Escobar", gender: "masculino", birth_date: "1980/4/7", email: "andres@hotmail.com", description: "ola que debo acer para cer parte de zu corporación????", address: "Calle X 100A-50", country: "Colombia", department: "Valle del cauca", city: "Cali", apartment: "es casa")
+register1.save!
+puts "Register created"
