@@ -10,7 +10,11 @@ class Api::V1::RegistersController < ApplicationController
 
   # GET /api/v1/registers/1
   def show
-    render json: @api_v1_register
+    if @api_v1_register
+      render json: @api_v1_register
+    else
+      render json: {status: 404, message: "Register not found"}, status: 404
+    end
   end
 
   # POST /api/v1/registers
@@ -35,17 +39,21 @@ class Api::V1::RegistersController < ApplicationController
 
   # DELETE /api/v1/registers/1
   def destroy
-    @api_v1_register.destroy
+
+    if @api_v1_register
+      @api_v1_register.destroy
+      render json: { messagge: 'Register was successfully destroyed.' }, status: 200
+    else
+      render json: {status: 404, message: "Unable to destroy this Register"}, status: 404
+    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_api_v1_register
       @api_v1_register = Api::V1::Register.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def api_v1_register_params
-      params.require(:api_v1_register).permit(:first_name, :last_name, :sex, :birth_date, :email, :description, :address, :country, :department, :city, :apartment)
+      params.require(:api_v1_register).permit(:first_name, :last_name, :gender, :birth_date, :email, :description, :address, :country, :department, :city, :apartment)
     end
 end

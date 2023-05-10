@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_10_031119) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_10_034201) do
   create_table "api_v1_registers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.string "sex"
+    t.string "gender"
     t.date "birth_date"
     t.string "email"
     t.text "description"
