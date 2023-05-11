@@ -8,6 +8,10 @@ class Api::V1::RegistersController < ApplicationController
     render json: @api_v1_registers
   end
 
+  def index_per_city
+    @registers_city = Api::V1::Register.all.group_by(&:city).map { |city, registers| [city, registers.count] }
+  end
+  
   # GET /api/v1/registers/1
   def show
     if @api_v1_register
