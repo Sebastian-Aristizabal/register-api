@@ -1,6 +1,8 @@
 class Api::V1::Register < ApplicationRecord
   validates :first_name, :last_name, :gender, :birth_date,
   :email, :description, :address, :country, :department, :city, presence: true
+  validates :email, uniqueness: true
+  validates :email, format: { with: /\A.*@.*\.com\z/ }
 
   validate :validate_legal_age
   before_save :validate_legal_age
@@ -15,7 +17,7 @@ class Api::V1::Register < ApplicationRecord
     end
   end
 
-  
+
   def max_records_per_city
     city_count = Api::V1::Register.where(city: self.city).count
     if city_count >= 3
