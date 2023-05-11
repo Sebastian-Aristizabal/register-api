@@ -15,6 +15,7 @@ class Api::V1::Register < ApplicationRecord
     end
   end
 
+  
   def max_records_per_city
     city_count = Api::V1::Register.where(city: self.city).count
     if city_count >= 3
